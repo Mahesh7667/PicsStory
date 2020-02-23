@@ -3,11 +3,11 @@ from .views import HomeView, ImgView, SearchView
 from django.conf.urls.static import static
 from PicsStory import settings
 urlpatterns =[
-    path('', HomeView.as_view() ),
+    path('', HomeView.as_view(),name="home" ),
 
     path('addpost/', ImgView.as_view() ,name="addImage"),
 
-    path(r'search/<int:pk>/', SearchView.as_view(), name='search_page'),
+    path('search/<int:pk>/', SearchView.as_view(), name='search_page'),
 
 ]
 
