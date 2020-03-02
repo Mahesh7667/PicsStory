@@ -16,7 +16,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
-    <a class="navbar-brand font-weight-bolder mr-3" href="index.html"><img src="{% static "img/logo.jpg" %}"></a>
+    <a class="navbar-brand font-weight-bolder mr-3" href="{% url 'home' %}"><img src="{% static "img/logo.jpg" %}"></a>
     <button class="navbar-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
@@ -30,10 +30,10 @@
     	</ul>
     	<ul class="navbar-nav ml-auto align-items-center">
     		<li class="nav-item">
-    		<a class="nav-link active" href="index.html">Home</a>
+    		<a class="nav-link active" href="{% url 'home' %}">Home</a>
     		</li>
     		<li class="nav-item">
-    		<a class="nav-link" href="addpost">Post</a>
+    		<a class="nav-link" href="{% url 'addImage' %}">Post</a>
     		</li>
     		<li class="nav-item">
     		</li>
@@ -57,15 +57,21 @@
     <div class="container">
     	<div class="row justify-content-center">
     		<div class="col-md-7">
-    			<article class="card">
-                    {% block content %}
-                        <form action="" method="POST" enctype='multipart/form-data' l>
-                        {% csrf_token %}
-                        {{ form }}
-                        <input type="submit" value="Submit"/>
-                        </form>
-                    {% endblock %}
-                {% if messages %}
+                <div align="center">
+                    <article class="card">
+                        {% block content %}
+                            <form action="" method="POST" enctype='multipart/form-data' l>
+                            {% csrf_token %}
+                                    UPLOAD a Image:{{ form.img }}
+                                <br>
+                                <br>Message:
+                                <br>{{ form.msg }}
+                                <tr colspan=2>
+                                    <br>
+                            <input type="submit" value="Submit"/>
+                            </form>
+                        {% endblock %}
+                    {% if messages %}
 <ul class="messages">
     {% for message in messages %}
     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
@@ -74,6 +80,7 @@
 {% endif %}
     			</article>
     		</div>
+            </div>
     	</div>
     </div>
     </section>
